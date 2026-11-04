@@ -1,17 +1,26 @@
-# Brukerveiledning: Git
+# Git for VG1: kom i gang uten stress
 
-> For VG1-elever · Lage og lagre versjoner av kodeprosjekter
+Git hjelper deg å lagre versjoner av kodeprosjektet ditt. Du kan se hva som er endret, gå tilbake til en eldre versjon og sende arbeidet til GitHub.
 
-Git er et verktøy som lagrer historikken til prosjektet ditt. Du kan se hva som er endret, gå tilbake til en eldre versjon og samarbeide med andre uten å sende mange kopier av samme mappe.
+> **Kort forklart:** Git er programmet på PC-en din. GitHub er nettsiden der prosjektet kan ligge som en kopi og deles med andre.
 
-## Dette lærer du
+## Slik tenker Git
 
-- opprette et Git-prosjekt i Visual Studio Code
-- lagre endringer som en commit
-- sende prosjektet til GitHub og hente det på en annen PC
-- unngå å dele passord og andre hemmelige filer
+Når du jobber med filer, går de vanligvis gjennom tre steg:
 
-## Før du begynner
+1. **Endret** – du har skrevet eller endret noe i filen.
+2. **Klar til lagring** – du velger hvilke endringer som skal bli med i neste lagring.
+3. **Lagret i Git** – du lager en **commit**, altså et lagringspunkt i prosjektets historie.
+
+~~~text
+Endre filer  →  git add  →  git commit
+~~~
+
+En commit er som et bilde av prosjektet akkurat da. Du kan derfor se tilbake på gamle versjoner senere.
+
+---
+
+## Før du starter
 
 Du trenger:
 
@@ -19,65 +28,136 @@ Du trenger:
 - [Git](https://git-scm.com/)
 - en konto på [GitHub](https://github.com/)
 
-Installer Git fra git-scm.com. Etterpå kan du åpne en ny terminal i VS Code med **Terminal → New Terminal**.
+Åpne terminalen i VS Code med **Terminal → New Terminal**.
+
+Sjekk først at Git virker:
+
+~~~bash
+git --version
+~~~
+
+Hvis du får et versjonsnummer, er Git installert.
+
+### Første gang: velg navn og e-post
+
+Git legger navnet ditt på commitene. Dette trenger du vanligvis bare å gjøre én gang på PC-en:
+
+~~~bash
+git config --global user.name "Ditt navn"
+git config --global user.email "din.epost@example.com"
+~~~
+
+Bruk gjerne samme e-post som på GitHub.
 
 ---
 
-## Del 1: Start et Git-prosjekt
+## Start et prosjekt
 
-### 1. Start Git i prosjektmappen
+Det finnes to vanlige måter å starte på.
 
-Åpne prosjektmappen i VS Code. Åpne terminalen nederst og skriv:
+### A. Du har allerede en prosjektmappe
+
+Åpne mappen i VS Code, åpne terminalen og skriv:
 
 ~~~bash
 git init
 ~~~
 
-Git lager nå en skjult mappe som heter `.git`. **Ikke slett den.** Den inneholder prosjektets historikk.
+Git lager nå en skjult mappe som heter `.git`. **Ikke slett den**, fordi den inneholder prosjektets historikk.
 
-### 2. Se hvilke filer Git har oppdaget
+### B. Prosjektet finnes allerede på GitHub
+
+Kopier adressen til prosjektet fra GitHub og skriv:
+
+~~~bash
+git clone https://github.com/brukernavn/prosjektnavn.git
+~~~
+
+Git laster da ned prosjektet, også de gamle commitene.
+
+---
+
+## Den vanlige Git-rutinen
+
+Bruk denne rekkefølgen hver gang du jobber med et prosjekt:
+
+### 1. Hent siste versjon
+
+~~~bash
+git pull
+~~~
+
+Dette henter nye endringer fra GitHub. Gjør det før du begynner, spesielt hvis flere jobber med samme prosjekt.
+
+### 2. Jobb med filene
+
+Endre eller lag nye filer i VS Code. Husk å lagre filene med **Ctrl + S**.
+
+### 3. Se hva som er endret
 
 ~~~bash
 git status
 ~~~
 
-Nye eller endrede filer vises ofte i rødt. Det betyr ikke at noe er galt — Git forteller bare at de ikke er lagt til i neste commit ennå.
+Denne kommandoen er den viktigste å lære. Den viser hvilke filer Git ser, og om noe er klart til commit.
 
-### 3. Legg filer klare og lag en commit
+Vil du se nøyaktig hva som er endret, kan du bruke:
+
+~~~bash
+git diff
+~~~
+
+### 4. Velg det som skal lagres
+
+For én fil:
+
+~~~bash
+git add main.py
+~~~
+
+For alle endringer i prosjektmappen:
 
 ~~~bash
 git add .
-git commit -m "Lagde første versjon av prosjektet"
 ~~~
 
-Punktumet i `git add .` betyr **alle filer i denne mappen**. En god commit-melding forklarer kort hva du har gjort.
+Etterpå kan du skrive `git status` igjen. Da ser du hvilke filer som blir med i neste commit.
 
-### 4. Sjekk resultatet
+### 5. Lag en commit
 
 ~~~bash
-git log --oneline
+git commit -m "La til spørsmål om navn"
 ~~~
 
-Du skal nå se commit-en din med et kort ID-nummer og meldingen du skrev.
+Skriv kort og tydelig hva du gjorde. Dårlige meldinger er for eksempel `endring` eller `oppdatert`. Bedre meldinger er:
+
+~~~text
+La til innlogging
+Rettet feil i kalkulatoren
+Oppdaterte README
+~~~
+
+### 6. Send arbeidet til GitHub
+
+~~~bash
+git push
+~~~
+
+Nå er commit-en både på PC-en din og på GitHub.
 
 ---
 
-## Del 2: Koble prosjektet til GitHub
+## Koble et nytt prosjekt til GitHub
 
-Git fungerer på PC-en din. GitHub er en nettside der du kan ha en sikker kopi og samarbeide med andre.
+Har du brukt `git init` i en lokal mappe? Da må du gjøre dette én gang:
 
-### 1. Lag et repository på GitHub
-
-1. Logg inn på [github.com](https://github.com/) og trykk **New repository**.
-2. Gi prosjektet et enkelt navn, for eksempel `python-oppgaver`.
-3. Velg **Private** hvis bare du og læreren skal se prosjektet, eller **Public** hvis alle kan se det.
+1. Gå til GitHub og trykk **New repository**.
+2. Velg et enkelt navn, for eksempel `python-oppgaver`.
+3. Velg **Private** hvis bare du og læreren skal se prosjektet.
 4. Trykk **Create repository**.
+5. Kopier adressen som slutter på `.git`.
 
-> Ikke velg README akkurat nå hvis du allerede har brukt `git init` lokalt.
-
-### 2. Koble den lokale mappen til GitHub
-
-GitHub viser en adresse som slutter på `.git`. Kopier den og bruk den i kommandoene under:
+Skriv deretter i terminalen:
 
 ~~~bash
 git branch -M main
@@ -85,78 +165,97 @@ git remote add origin https://github.com/brukernavn/prosjektnavn.git
 git push -u origin main
 ~~~
 
-Bytt ut `brukernavn` og `prosjektnavn` med din egen adresse. Første gang kan GitHub be deg om å logge inn i nettleseren.
+Bytt ut adressen med din egen. Etter dette holder det vanligvis å bruke `git pull` og `git push`.
 
-## Vanlig arbeidsflyt hver gang du jobber
-
-| Steg | Kommando | Hva den gjør |
-| --- | --- | --- |
-| 1. Hent | `git pull` | Henter arbeid som finnes på GitHub. |
-| 2. Jobb | — | Endre eller lag nye filer i VS Code. Husk `Ctrl + S`. |
-| 3. Kontroller | `git status` | Sjekk hva som er endret. |
-| 4. Klargjør | `git add .` | Velg alle endringene til neste commit. |
-| 5. Lagre | `git commit -m "Forklar endringen"` | Lag et lagringspunkt. |
-| 6. Send | `git push` | Send commit-en til GitHub. |
+> Ikke lag README på GitHub når du allerede har startet prosjektet lokalt. Da slipper du en unødvendig konflikt i begynnelsen.
 
 ---
 
-## Del 3: Eksempel med en Python-oppgave
+## Nyttige og ofte brukte kommandoer
 
-Du har laget `main.py` med et program som spør om brukerens navn. Etter at programmet virker, gjør du dette i terminalen:
+| Kommando | Hva den gjør |
+| --- | --- |
+| `git --version` | Sjekker at Git er installert. |
+| `git init` | Starter Git i den åpne prosjektmappen. |
+| `git clone <adresse>` | Laster ned et prosjekt fra GitHub. |
+| `git status` | Viser hva som er endret og klart til commit. |
+| `git diff` | Viser nøyaktig hva som er endret. |
+| `git add <fil>` | Gjør én fil klar til commit. |
+| `git add .` | Gjør alle endringer klare til commit. |
+| `git commit -m "melding"` | Lager et lagringspunkt. |
+| `git log --oneline` | Viser gamle commiter, én per linje. |
+| `git pull` | Henter endringer fra GitHub. |
+| `git push` | Sender commitene dine til GitHub. |
+
+---
+
+## Se gamle versjoner
+
+Bruk denne kommandoen for å se historikken:
 
 ~~~bash
-git status
-git add main.py
-git commit -m "La til spørsmål om navn"
-git push
+git log --oneline
 ~~~
 
-Senere finner du en feil. Rett feilen, test programmet og kjør de samme kommandoene igjen. GitHub vil da vise to lagringspunkter i stedet for at den gamle versjonen blir borte.
+Du får en kort liste med commit-ID og melding. Hvis du vurderer å gå tilbake til en gammel versjon i et skoleprosjekt, spør læreren først.
 
 ---
 
-## Bruke Source Control i VS Code
+## Ikke legg dette på GitHub
 
-Du kan også bruke Git uten å skrive alle kommandoene. Trykk på **Source Control**-ikonet i menyen til venstre i VS Code.
+Ikke legg passord, API-nøkler eller personopplysninger i prosjektet. Bruk en fil som heter `.gitignore` for å fortelle Git hvilke filer den skal hoppe over.
 
-- Trykk **+** ved en fil for å gjøre det samme som `git add`.
-- Skriv en kort melding øverst og trykk **Commit**.
-- Trykk **Sync Changes** eller **Publish Branch** for å sende til GitHub.
-
-Terminalkommandoene er likevel nyttige når noe ikke virker.
-
----
-
-## Viktig sikkerhet
-
-Ikke legg passord, API-nøkler eller personopplysninger på GitHub. Selv et privat repository kan deles ved en feil. Bruk en fil som heter `.gitignore` for filer Git skal overse.
-
-Eksempel på innhold i `.gitignore`:
+Eksempel:
 
 ~~~gitignore
 .env
 __pycache__/
 venv/
+node_modules/
 ~~~
 
-Hvis du allerede har sendt et passord til GitHub, må du endre passordet eller nøkkelen med en gang.
+Har du allerede sendt et passord til GitHub? Bytt passordet eller nøkkelen med en gang.
 
 ---
 
 ## Vanlige problemer
 
-| Problem | Hva du kan gjøre |
-| --- | --- |
-| Jeg ser ikke endringene | Skriv `git status`. Sjekk at du åpnet riktig mappe i VS Code. |
-| `git push` blir avvist | Kjør `git pull` først. GitHub kan ha endringer du mangler. |
-| Jeg glemte `git add` | Kjør `git add .` og lag en ny commit. Ingenting er ødelagt. |
-| Jeg vil se eldre versjoner | Bruk `git log --oneline`. Spør læreren før du går tilbake til en gammel versjon. |
+### «Jeg ser ikke endringene mine»
+
+Skriv:
+
+~~~bash
+git status
+~~~
+
+Sjekk også at du har åpnet riktig mappe i VS Code.
+
+### «git push blir avvist»
+
+Noen kan ha sendt nye endringer til GitHub først. Prøv:
+
+~~~bash
+git pull
+git push
+~~~
+
+### «Jeg glemte git add»
+
+Det går helt fint. Skriv `git add .`, og lag så en ny commit.
+
+### «Jeg fikk med en fil som ikke skal være med»
+
+Hvis du ikke har laget commit ennå:
+
+~~~bash
+git restore --staged filnavn
+~~~
+
+Filen blir fortsatt liggende på PC-en, men tas ut av neste commit.
 
 ---
 
-## Kort oppsummering
-
-Git hjelper deg å holde orden på arbeidet ditt. Den viktigste rekkefølgen er:
+## Huskeregel
 
 ~~~bash
 git pull
@@ -166,5 +265,5 @@ git commit -m "Forklar endringen"
 git push
 ~~~
 
-Husk: **Hent → jobb → kontroller → lagre → send.**
+**Hent → jobb → sjekk → lagre → send.**
 

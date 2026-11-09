@@ -1,0 +1,40 @@
+OPPGAVE 3 – HOLD EN FIL UTENFOR GIT
+
+Mål:
+Lage en .gitignore-fil slik at Git ikke prøver å lagre en privat fil.
+
+Dette trenger du:
+Bruk samme Git-mappe som i oppgave 1 og 2.
+
+Oppgave:
+1. Lag en fil som heter hemmelig.txt.
+2. Skriv en testtekst i filen og lagre den.
+3. Sjekk at Git ser filen.
+4. Lag en fil som heter .gitignore.
+5. Skriv hemmelig.txt i .gitignore og lagre filen.
+6. Sjekk at Git ikke lenger foreslår å legge til hemmelig.txt.
+7. Lagre .gitignore i en commit.
+
+Tips – kommandoer du kan bruke:
+git status
+git add .gitignore
+git commit -m "La til .gitignore"
+
+Innhold i .gitignore:
+hemmelig.txt
+
+LØSNING:
+Skriv først hemmelig.txt på en egen linje i .gitignore.
+Sjekk deretter med:
+
+git status
+
+Git skal vise .gitignore, men ikke hemmelig.txt. Lagre så .gitignore:
+
+git add .gitignore
+git commit -m "La til .gitignore"
+
+Viktig:
+Hvis hemmelig.txt allerede er lagt til med git add, må du først ta den ut av neste commit:
+
+git restore --staged hemmelig.txt

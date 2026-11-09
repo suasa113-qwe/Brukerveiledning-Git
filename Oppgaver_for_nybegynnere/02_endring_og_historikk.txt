@@ -1,0 +1,34 @@
+OPPGAVE 2 – ENDRE EN FIL OG SE HISTORIKKEN
+
+Mål:
+Se hva som har endret seg, og lagre en ny versjon av en fil.
+
+Dette trenger du:
+Gjør oppgave 1 først, eller bruk en Git-mappe som allerede har hei.txt.
+
+Oppgave:
+1. Åpne hei.txt.
+2. Skriv en ny linje under hilsenen, for eksempel: "Jeg øver på Git."
+3. Lagre filen.
+4. Se hvilke endringer Git har funnet.
+5. Se nøyaktig hva som er endret.
+6. Lag en ny commit med meldingen: "La til ny linje i hei.txt".
+7. Se de to commitene i historikken.
+
+Tips – kommandoer du kan bruke:
+git status
+git diff
+git add hei.txt
+git commit -m "La til ny linje i hei.txt"
+git log --oneline
+
+LØSNING:
+Skriv dette i terminalen:
+
+git status
+git diff
+git add hei.txt
+git commit -m "La til ny linje i hei.txt"
+git log --oneline
+
+Nå skal historikken vise både den gamle og den nye commit-en.

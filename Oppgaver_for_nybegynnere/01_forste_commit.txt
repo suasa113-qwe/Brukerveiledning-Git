@@ -1,0 +1,31 @@
+OPPGAVE 1 – DIN FØRSTE COMMIT
+
+Mål:
+Lag en enkel prosjektmappe, start Git og lagre den første versjonen.
+
+Oppgave:
+1. Lag en ny mappe som heter git-ovelse.
+2. Åpne mappen i VS Code.
+3. Lag en fil som heter hei.txt.
+4. Skriv en kort hilsen i filen og lagre den.
+5. Start Git i mappen.
+6. Lag en commit med meldingen: "La til hei.txt".
+7. Se at commit-en finnes i historikken.
+
+Tips – kommandoer du kan bruke:
+git init
+git status
+git add hei.txt
+git commit -m "La til hei.txt"
+git log --oneline
+
+LØSNING:
+Åpne terminalen i mappen git-ovelse og skriv:
+
+git init
+git status
+git add hei.txt
+git commit -m "La til hei.txt"
+git log --oneline
+
+Du skal nå se en linje med et kort ID-nummer og teksten "La til hei.txt".

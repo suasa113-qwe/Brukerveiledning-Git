@@ -189,6 +189,20 @@ Bytt ut adressen med din egen. Etter dette holder det vanligvis å bruke `git pu
 
 ---
 
+## Øvingsoppgaver for nybegynnere
+
+I mappen [Oppgaver_for_nybegynnere](./Oppgaver_for_nybegynnere/) ligger tre små oppgaver som du kan gjøre i terminalen.
+
+| Fil | Du øver på |
+| --- | --- |
+| [01_forste_commit.txt](./Oppgaver_for_nybegynnere/01_forste_commit.txt) | Å starte Git og lage din første commit. |
+| [02_endring_og_historikk.txt](./Oppgaver_for_nybegynnere/02_endring_og_historikk.txt) | Å se endringer og lage en ny commit. |
+| [03_gitignore.txt](./Oppgaver_for_nybegynnere/03_gitignore.txt) | Å bruke `.gitignore` og holde filer utenfor Git. |
+
+Hver fil har først oppgaven, deretter tips og til slutt et forslag til løsning. Prøv gjerne selv før du leser løsningen.
+
+---
+
 ## Se gamle versjoner
 
 Bruk denne kommandoen for å se historikken:
